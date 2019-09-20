@@ -22,6 +22,14 @@ export const fetchPostsAndUsers = () => async (dispatch, getState) => {
 		.value();
 };
 
+/*
+Since action sent to redux thunk
+action can either return a javascript obj or a function!!
+For a function, it would be automatically called with the dispatch and getState arguments
+so that user has a total control over changing or getting info out of the redux store
+---- Anytime making API request or Async, Use Redux Thunk!! ---
+*/
+
 // dispatch function shows fetchPost inside redux thunk and get invoked with dispatch
 export const fetchPosts = () => async dispatch => {
 	//dispatch, getState -> can access and modify data in redux
