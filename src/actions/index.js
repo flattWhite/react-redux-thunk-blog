@@ -9,8 +9,17 @@ export const fetchPostsAndUsers = () => async (dispatch, getState) => {
 	await dispatch(fetchPosts());
 
 	// Go through all posts and get unique userId
+	/*
 	const userIds = _.uniq(_.map(getState().posts, "userId"));
 	userIds.forEach(id => dispatch(fetchUser(id)));
+	*/
+
+	// Refactor code version
+	_.chain(getState().posts)
+		.map("userId")
+		.uniq()
+		.forEach(id => dispatch(fetchUser(id)))
+		.value();
 };
 
 // dispatch function shows fetchPost inside redux thunk and get invoked with dispatch
